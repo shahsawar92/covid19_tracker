@@ -46,7 +46,7 @@ export default function SimplePaper({country, dailydata}) {
             setfetching(false);
         }
         FetchglobalData();
-    }, [1])
+    }, [setGlobalData])
     const loading = "loading..."
     if (fetching === true) {
 
