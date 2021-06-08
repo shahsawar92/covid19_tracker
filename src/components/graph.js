@@ -3,7 +3,7 @@ import {Line} from 'react-chartjs-2';
 
 
 export default function LineGraph({dailydata, country}) {
-    console.log("daily data contain: ", dailydata)
+  
 
     if (!country) {
         const data = {
@@ -53,7 +53,7 @@ export default function LineGraph({dailydata, country}) {
                 }
             ]
         };
-
+    
         return (
             <div>
                 <Line data={data}/>
@@ -86,4 +86,4 @@ export default function LineGraph({dailydata, country}) {
             <Line data={data}/>
         </div>
     )
-}
+} 

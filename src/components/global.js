@@ -27,7 +27,6 @@ const useStylestypography = makeStyles({
 
 export default function SimplePaper({country, dailydata}) {
     const classes = useStyles();
-    console.log("from sidebar: ", country)
     const classtypeography = useStylestypography();
 
     const [globalData, setGlobalData] = useState();
@@ -38,7 +37,7 @@ export default function SimplePaper({country, dailydata}) {
         async function FetchglobalData() {
             setfetching(true);
 
-            const url = 'https://api.thevirustracker.com/free-api?global=stats'
+            const url = 'https://api.covid19api.com/summary'
 
             const response = await fetch(url);
             const globalD = await response.json();
@@ -46,7 +45,11 @@ export default function SimplePaper({country, dailydata}) {
             setfetching(false);
         }
         FetchglobalData();
-    }, [setGlobalData])
+    }, [setGlobalData]);
+
+
+   
+    
     const loading = "loading..."
     if (fetching === true) {
 
@@ -82,7 +85,7 @@ export default function SimplePaper({country, dailydata}) {
                             style={
                                 {color: 'orange'}
                         }>
-                            Active
+                            New conformed
                         </Typography>
                     </div>
                 </Paper>
@@ -137,7 +140,7 @@ export default function SimplePaper({country, dailydata}) {
                     }>
                         <Typography variant="h4" gutterBottom>
                             <NumberFormat value={
-                                    globalData && globalData.results && globalData.results[0].total_cases
+                                    globalData?.Global?.TotalConfirmed
                                 }
                                 displayType={'text'}
                                 thousandSeparator={true}/>
@@ -146,7 +149,7 @@ export default function SimplePaper({country, dailydata}) {
 
 
                         <Typography variant="subtitle2" gutterBottom>
-                            Global Cases For Today
+                            Total Global Cases
                         </Typography>
                     </div>
                 </Paper>
@@ -159,7 +162,7 @@ export default function SimplePaper({country, dailydata}) {
                                 {color: 'orange'}
                         }>
                             <NumberFormat value={
-                                    globalData && globalData.results && globalData.results[0].total_active_cases
+                                   globalData?.Global?.NewConfirmed
                                 }
                                 displayType={'text'}
                                 thousandSeparator={true}/>
@@ -170,7 +173,7 @@ export default function SimplePaper({country, dailydata}) {
                             style={
                                 {color: 'orange'}
                         }>
-                            Active
+                            New Conformed Cases
                         </Typography>
                     </div>
                 </Paper>
@@ -183,7 +186,7 @@ export default function SimplePaper({country, dailydata}) {
                                 {color: 'green'}
                         }>
                             <NumberFormat value={
-                                    globalData && globalData.results && globalData.results[0].total_recovered
+                                    globalData?.Global?.TotalRecovered
                                 }
                                 displayType={'text'}
                                 thousandSeparator={true}/>
@@ -195,7 +198,7 @@ export default function SimplePaper({country, dailydata}) {
                             style={
                                 {color: 'green'}
                         }>
-                            Recoverd
+                            Total Recoverd
                         </Typography>
                     </div>
                 </Paper>
@@ -208,7 +211,7 @@ export default function SimplePaper({country, dailydata}) {
                                 {color: 'red'}
                         }>
                             <NumberFormat value={
-                                    globalData && globalData.results && globalData.results[0].total_deaths
+                                   globalData?.Global?.TotalDeaths
                                 }
                                 displayType={'text'}
                                 thousandSeparator={true}/>
@@ -220,7 +223,7 @@ export default function SimplePaper({country, dailydata}) {
                             style={
                                 {color: 'red'}
                         }>
-                            Deaths
+                           Total Deaths
                         </Typography>
                     </div>
                 </Paper>

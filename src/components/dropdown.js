@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
 export default function Select1({h}) {
   const [mydata, setmydata]= useState([]);
   const classes = useStyles();
@@ -34,10 +33,10 @@ export default function Select1({h}) {
   return (
     <div>
       <FormControl className={classes.formControl}>
-  <InputLabel htmlFor="grouped-select">select country </InputLabel>
-        <NativeSelect defaultValue="" onChange={(event)=>h(event.target.value)} id="grouped-select">
-          <option></option>
-          {mydata.map((country,i)=><option key={i}>{country.name}</option>)}
+      <InputLabel htmlFor="select">select country </InputLabel>
+        <NativeSelect   onChange={(event)=>h(event.target.value)} id="select">
+        <option aria-label="None" value={undefined} />
+          {mydata.map((country,i)=><option key={i+1}>{country.name}</option>)}
         </NativeSelect>
       </FormControl>
     </div>
